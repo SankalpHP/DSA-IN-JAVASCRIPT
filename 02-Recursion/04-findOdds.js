@@ -36,3 +36,27 @@ function findOdds(arr){
 
 console.log(findOdds([1,2,3,4,5,6,7,8,9,10]));
 
+/**  
+    BETTER WAY TO THIS...
+
+    function oddMan(arr){
+        let odd = [];
+
+        function helper(arr){
+            // BASE CONDITION 
+            if(!arr.length){
+                return ;
+            }
+            if(arr[0]%2 != 0){
+                odd.push(arr[0]);
+            }
+            // RECURSIVE CALL WITH DIFFERENT INPUT
+            helper(arr.slice(1));
+        }
+
+        helper(arr);
+        return odd;
+    }
+        
+ */
+
