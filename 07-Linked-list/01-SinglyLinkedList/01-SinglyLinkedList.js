@@ -18,6 +18,7 @@ class SinglyLinkedList{
 
     push(val){
        let newNode = new Node(val);
+
        if(!this.head){
           this.head = newNode;
           this.tail = newNode;
@@ -26,26 +27,46 @@ class SinglyLinkedList{
           this.tail = newNode;
        }
        this.length++;
+       
        return this;
     }
 
-    // one of the way to traverse in a SinglyLinkedList
-    traverse(){
+    pop(){
+        if(!this.head) return undefined;
+
         let current = this.head;
-        while(current){
-            console.log(current.val);
+        let newTail = current;
+
+        while(current.next){
+            newTail = current;
             current = current.next;
         }
-    }
+
+        this.tail = newTail;
+        this.tail.next = null;
+        this.length--;
+
+        if(this.length === 0){
+            this.head = null;
+            this.tail = null;
+        }
+
+        return current
+    }   
 }
 
 let list = new SinglyLinkedList();
     list.push(1);
     list.push(2);
     list.push(3);
-    console.log(list);
-    
-    list.traverse();
+    console.log("list => ",list);
+
+    console.log("POP => ",list.pop());
+    console.log("list => ",list);
+    console.log("POP => ",list.pop());
+    console.log("list => ",list);
+    console.log("POP => ",list.pop());
+    console.log("list => ",list);
     
 
     
