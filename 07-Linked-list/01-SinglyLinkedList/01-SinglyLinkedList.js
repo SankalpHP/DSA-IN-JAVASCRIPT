@@ -9,11 +9,33 @@ class Node{
     }
 }
 
-// Bad way to push a code in a singlylinkedlist
-let firstNode = new Node("Hii");
-    firstNode.next = new Node("There");
-    firstNode.next.next = new Node("Good");
-    firstNode.next.next.next = new Node("Morning");
+class SinglyLinkedList{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
 
-    console.log(firstNode);
+    push(val){
+       let newNode = new Node(val);
+       if(!this.head){
+          this.head = newNode;
+          this.tail = newNode;
+       }else{
+          this.tail.next = newNode;
+          this.tail = newNode;
+       }
+       this.length++;
+       return this;
+    }
+}
+
+let list = new SinglyLinkedList();
+    list.push(1);
+    list.push(2);
+    list.push(3);
+
+    console.log(list);
+    
+
     
