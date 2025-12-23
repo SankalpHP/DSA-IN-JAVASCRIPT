@@ -27,7 +27,7 @@ class SinglyLinkedList{
           this.tail = newNode;
        }
        this.length++;
-       
+
        return this;
     }
 
@@ -53,20 +53,33 @@ class SinglyLinkedList{
 
         return current
     }   
+
+    shift(){
+        if(!this.head) return undefined;
+        let currentHead = this.head;
+        this.head = currentHead.next;
+        this.length--;
+        if(this.length === 0){
+            this.head = null;
+            this.tail = null;
+        }
+        return currentHead;
+    }
 }
 
 let list = new SinglyLinkedList();
     list.push(1);
     list.push(2);
     list.push(3);
+    
     console.log("list => ",list);
-
-    console.log("POP => ",list.pop());
+    console.log("shift => ",list.shift());
     console.log("list => ",list);
-    console.log("POP => ",list.pop());
+    console.log("shift => ",list.shift());
     console.log("list => ",list);
-    console.log("POP => ",list.pop());
+    console.log("shift => ",list.shift());
     console.log("list => ",list);
+    
     
 
     
