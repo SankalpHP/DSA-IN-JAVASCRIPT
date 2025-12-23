@@ -28,14 +28,24 @@ class SinglyLinkedList{
        this.length++;
        return this;
     }
+
+    // one of the way to traverse in a SinglyLinkedList
+    traverse(){
+        let current = this.head;
+        while(current){
+            console.log(current.val);
+            current = current.next;
+        }
+    }
 }
 
 let list = new SinglyLinkedList();
     list.push(1);
     list.push(2);
     list.push(3);
-
     console.log(list);
+    
+    list.traverse();
     
 
     
