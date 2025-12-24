@@ -94,6 +94,15 @@ class SinglyLinkedList{
             counter++;
         }
     }
+
+    set(index,value){
+        let node = this.get(index);
+
+        if(!node) return false;
+
+        node.val = value;
+        return true
+    }
 }
 
 let list = new SinglyLinkedList();
@@ -109,7 +118,10 @@ let list = new SinglyLinkedList();
     //     current = current.next;
     // }
 
-    console.log(list.get(3));
+    // console.log(list.get(2));
+    console.log(list.set(1,6));
+    console.log(list);
+    
 
     
 
