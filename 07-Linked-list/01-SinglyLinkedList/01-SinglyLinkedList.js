@@ -78,6 +78,22 @@ class SinglyLinkedList{
         this.length++;
         return this;
     }
+
+    get(index){
+        if(index < 0 || index >= this.length) return null;
+
+        if(index === 0) return this.head;
+
+        let current = this.head;
+        let counter = 1;
+        while(current){
+            current = current.next;
+            if(counter === index){
+               return current;
+            }
+            counter++;
+        }
+    }
 }
 
 let list = new SinglyLinkedList();
@@ -86,13 +102,16 @@ let list = new SinglyLinkedList();
     list.push(3);
 
     console.log(list);
-    console.log(list.unshift(4));
     
-    let current = list.head;
-    while(current){
-        console.log("current => ", current);
-        current = current.next;
-    }
+    // let current = list.head;
+    // while(current){
+    //     console.log("current => ", current);
+    //     current = current.next;
+    // }
+
+    console.log(list.get(3));
+
+    
 
     
     
