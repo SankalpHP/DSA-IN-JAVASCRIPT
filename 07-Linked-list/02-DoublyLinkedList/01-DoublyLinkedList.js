@@ -47,6 +47,17 @@ class DoublyLinkedList{
         return popNode;
     }
 
+    shift(){
+        if(this.length === 0) return undefined;
+        if(this.length === 1) return this.pop();
+        let oldHead = this.head;
+        this.head = oldHead.next;
+        oldHead.next = null;
+        this.head.prev = null;
+        this.length--;
+        return oldHead;
+    }
+
     print(){
         let current = list.head;
         while(current){
@@ -58,13 +69,16 @@ class DoublyLinkedList{
 
 let list = new DoublyLinkedList();
 list.push(1);
-list.push(2);
-list.push(3);
+// list.push(2);
+// list.push(3);
 
 list.print();
 
-console.log("pop => ", list.pop());
+console.log("shift => ", list.shift());
 
 list.print();
+
+console.log(list);
+
 
 
