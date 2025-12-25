@@ -58,6 +58,16 @@ class DoublyLinkedList{
         return oldHead;
     }
 
+    unshift(val){
+        if(this.length === 0) return this.push(val);
+        let newNode = new Node(val);
+        newNode.next = this.head;
+        this.head.prev = newNode;
+        this.head = newNode
+        this.length++;
+        return this;
+    }
+
     print(){
         let current = list.head;
         while(current){
@@ -68,13 +78,13 @@ class DoublyLinkedList{
 }
 
 let list = new DoublyLinkedList();
-list.push(1);
+// list.push(1);
 // list.push(2);
 // list.push(3);
 
 list.print();
 
-console.log("shift => ", list.shift());
+console.log("unshift => ", list.unshift(4));
 
 list.print();
 
