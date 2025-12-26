@@ -102,6 +102,13 @@ class DoublyLinkedList{
         return current;
     }
 
+    set(index,value){
+        let foundNode = this.get(index);
+        if(!foundNode) return false;
+        foundNode.val = value;
+        return true;
+    }
+
 
     print(){
         let current = this.head;
@@ -120,7 +127,9 @@ list.push(4); // 3
 list.push(5); // 4
 list.push(6); // 5
 
-console.log(list.get(4));
+console.log(list.set(6,7));
+
+
 
 
 
