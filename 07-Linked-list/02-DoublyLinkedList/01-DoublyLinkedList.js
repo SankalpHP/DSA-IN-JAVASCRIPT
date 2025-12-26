@@ -1,84 +1,126 @@
 /**
- *   Doubly Linked List
+ * Node class
+ * Represents a single element in the Doubly Linked List
  */
-
-class Node{
-    constructor(val){
-        this.val = val;
-        this.next = null;
-        this.prev = null;
+class Node {
+    constructor(val) {
+        this.val = val;      // Value stored in the node
+        this.next = null;    // Pointer to next node
+        this.prev = null;    // Pointer to previous node
     }
 }
 
-class DoublyLinkedList{
+/**
+ * Doubly Linked List Data Structure
+ * Each node has references to both next and previous nodes
+ */
+class DoublyLinkedList {
 
-    constructor(){
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+    constructor() {
+        this.head = null;    // First node in the list
+        this.tail = null;    // Last node in the list
+        this.length = 0;     // Total number of nodes
     }
 
-    push(val){
+    /**
+     * push(val)
+     * Adds a new node to the end of the list
+     */
+    push(val) {
         let newNode = new Node(val);
-        if(this.length === 0){
+
+        // If list is empty
+        if (this.length === 0) {
             this.head = newNode;
             this.tail = newNode;
-        }else{
+        } 
+        // Otherwise attach node after tail
+        else {
             this.tail.next = newNode;
             newNode.prev = this.tail;
             this.tail = newNode;
         }
+
         this.length++;
         return this;
     }
 
-    pop(){
-        if(!this.head) return undefined
+    /**
+     * pop()
+     * Removes the last node from the list
+     */
+    pop() {
+        if (!this.head) return undefined;
+
         let popNode = this.tail;
-        if(this.length === 1){
+
+        // If only one node exists
+        if (this.length === 1) {
             this.head = null;
             this.tail = null;
-        }else{
+        } 
+        // More than one node
+        else {
             this.tail = popNode.prev;
-            this.tail.next  = null;
+            this.tail.next = null;
             popNode.prev = null;
         }
+
         this.length--;
         return popNode;
     }
 
-    shift(){
-        if(this.length === 0) return undefined;
-        if(this.length === 1) return this.pop();
+    /**
+     * shift()
+     * Removes the first node from the list
+     */
+    shift() {
+        if (this.length === 0) return undefined;
+
+        // If only one node, reuse pop()
+        if (this.length === 1) return this.pop();
+
         let oldHead = this.head;
         this.head = oldHead.next;
-        oldHead.next = null;
+
         this.head.prev = null;
+        oldHead.next = null;
+
         this.length--;
         return oldHead;
     }
 
-    unshift(val){
-        if(this.length === 0) return this.push(val);
+    /**
+     * unshift(val)
+     * Adds a new node at the beginning of the list
+     */
+    unshift(val) {
+        if (this.length === 0) return this.push(val);
+
         let newNode = new Node(val);
+
         newNode.next = this.head;
         this.head.prev = newNode;
-        this.head = newNode
+        this.head = newNode;
+
         this.length++;
         return this;
     }
-    
+
+    /**
+     * get(index)
+     * Retrieves a node at a specific index
+     * Optimized using head/tail traversal
+     */
     get(index) {
 
-        if(this.length === 0) return null;
-
-        // Invalid index check (covers empty list as well)
+        // Invalid index check
         if (index < 0 || index >= this.length) return null;
 
         let midIndex = Math.floor(this.length / 2);
         let current, counter;
 
-        // If index is in the first half → traverse from head
+        // Traverse from head if index is in first half
         if (index <= midIndex) {
             current = this.head;
             counter = 0;
@@ -88,7 +130,7 @@ class DoublyLinkedList{
                 counter++;
             }
         }
-        // If index is in the second half → traverse from tail
+        // Traverse from tail if index is in second half
         else {
             current = this.tail;
             counter = this.length - 1;
@@ -102,30 +144,42 @@ class DoublyLinkedList{
         return current;
     }
 
-    set(index,value){
+    /**
+     * set(index, value)
+     * Updates the value of a node at a given index
+     */
+    set(index, value) {
         let foundNode = this.get(index);
-        if(!foundNode) return false;
+        if (!foundNode) return false;
+
         foundNode.val = value;
         return true;
     }
 
-    insert(index,value){
+    /**
+     * insert(index, value)
+     * Inserts a new node at a specific index
+     */
+    insert(index, value) {
 
-        if(index < 0 || index > this.length) return null;
+        if (index < 0 || index > this.length) return null;
 
-        if(index === this.length){
+        // Insert at end
+        if (index === this.length) {
             this.push(value);
             return true;
         }
 
-        if(index === 0) {
-            this.unshift(value)
+        // Insert at beginning
+        if (index === 0) {
+            this.unshift(value);
             return true;
         }
 
         let currentNode = this.get(index);
         let newNode = new Node(value);
 
+        // Rewire pointers
         newNode.next = currentNode;
         newNode.prev = currentNode.prev;
 
@@ -136,26 +190,41 @@ class DoublyLinkedList{
         return true;
     }
 
-    remove(index){
-        if(index < 0 || index >= this.length) return undefined;
-        if(index === 0) return this.shift();
-        if(index === this.length-1) return this.pop();
+    /**
+     * remove(index)
+     * Removes a node from a specific index
+     */
+    remove(index) {
+        if (index < 0 || index >= this.length) return undefined;
+
+        // Remove head
+        if (index === 0) return this.shift();
+
+        // Remove tail
+        if (index === this.length - 1) return this.pop();
+
         let removeNode = this.get(index);
 
+        // Reconnect neighboring nodes
         removeNode.next.prev = removeNode.prev;
         removeNode.prev.next = removeNode.next;
 
+        // Detach removed node
         removeNode.next = null;
         removeNode.prev = null;
-        
+
         this.length--;
         return removeNode;
     }
 
-
-    print(){
+    /**
+     * print()
+     * Traverses and logs the entire list
+     * Helpful for debugging
+     */
+    print() {
         let current = this.head;
-        while(current){
+        while (current) {
             console.log("List Item => ", current);
             current = current.next;
         }
