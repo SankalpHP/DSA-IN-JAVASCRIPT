@@ -16,8 +16,8 @@ class Node {
 // Queue class using a linked list
 class Queue {
     constructor() {
-        this.first = null;   // Front of the queue
-        this.last = null;    // Rear of the queue
+        this.front = null;   // Front of the queue
+        this.rear = null;    // Rear of the queue
         this.size = 0;       // Number of elements in the queue
     }
 
@@ -30,14 +30,14 @@ class Queue {
         let newNode = new Node(val);
 
         // If queue is empty
-        if (!this.first) {
-            this.first = newNode;
-            this.last = newNode;
+        if (!this.front) {
+            this.front = newNode;
+            this.rear = newNode;
         } 
         // If queue has elements
         else {
-            this.last.next = newNode;
-            this.last = newNode;
+            this.rear.next = newNode;
+            this.rear = newNode;
         }
 
         return ++this.size;
@@ -51,16 +51,16 @@ class Queue {
     dequeue() {
         if (this.size === 0) return null;
 
-        let removeNode = this.first;
+        let removeNode = this.front;
 
         // If only one element exists
         if (this.size === 1) {
-            this.first = null;
-            this.last = null;
+            this.front = null;
+            this.rear = null;
         } 
         // More than one element
         else {
-            this.first = removeNode.next;
+            this.front = removeNode.next;
             removeNode.next = null;
         }
 
