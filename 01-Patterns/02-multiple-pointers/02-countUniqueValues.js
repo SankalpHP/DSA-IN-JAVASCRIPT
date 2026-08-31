@@ -43,4 +43,14 @@
     }
 
     console.log(countUniqueValues(arr));
+
+
+    // by frequency counter pattern
+    // function countUniqueValues(arr){
+    //     let freq1 = {};
+    //     for(const num of arr){
+    //         freq1[num] = (freq1[num] || 0) + 1;
+    //     }
+    // return Object.entries(freq1).length;
+    // }
     
