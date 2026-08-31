@@ -32,3 +32,14 @@
     }
 
     console.log(capitalizeWords(arr));
+
+    // function capitalizeFirst(arr){
+    //     let capitalized = [];
+    //     function helper(arr){
+    //         if(arr.length === 0) return capitalized;
+    //         let word = arr[0].toUpperCase();
+    //         capitalized.push(word);
+    //         return helper(arr.slice(1));
+    //     }
+    //     return helper(arr);
+    // }

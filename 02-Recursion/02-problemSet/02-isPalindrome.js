@@ -43,5 +43,19 @@
     }
 
     console.log(isPalindrome(" "));
+
+    // Another solution
+    // function isPalindrome(str){
+    //     let rev = "";
+    //     function reverse(str){
+    //         // base
+    //         if(str.length <= 0) return rev;
+    //         // logic
+    //         rev += str[str.length - 1];
+    //         // recursive call with different inputs
+    //         return reverse(str.substring(0,str.length-1));
+    //     }
+    //     return str === reverse(str)
+    // } 
     
 

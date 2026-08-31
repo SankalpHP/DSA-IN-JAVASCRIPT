@@ -34,4 +34,14 @@
     }
 
     console.log(someRecursive([4,6,8],isOdd));
+
+    // another solution without callback function
+    // function someRecursive(arr){
+    //     // base
+    //     if(arr.length <= 0) return false;
+    //     // logic
+    //     if(arr[0]%2 !== 0) return true;
+    //     // recursive call with diff input
+    //     return someRecursive(arr.slice(1));
+    // }
     

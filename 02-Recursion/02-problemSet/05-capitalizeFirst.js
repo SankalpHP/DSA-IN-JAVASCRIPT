@@ -44,4 +44,15 @@
 
     // ✅ Example test case
     console.log(capitalizeFirst(['car', 'taco', 'banana'])); // ✅ ['Car', 'Taco', 'Banana']
+
+    // function capitalizeFirst(arr){
+    //     let capitalized = [];
+    //     function helper(arr){
+    //         if(arr.length === 0) return capitalized;
+    //         let word = `${arr[0].substring(0,1).toUpperCase()}${arr[0].substring(1)}`;
+    //         capitalized.push(word);
+    //         return helper(arr.slice(1));
+    //     }
+    //     return helper(arr);
     
+    // }
